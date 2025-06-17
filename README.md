@@ -100,7 +100,7 @@ Here are the Terraform configuration files -
 ```yaml
 terraform {
   backend "s3" {
-    bucket = "terraform-eks-cicd-7001"
+    bucket = "terraform-eks-cicd-19"
     key    = "jenkins/terraform.tfstate"
     region = "us-east-1"
   }
@@ -225,7 +225,7 @@ module "ec2_instance" {
 
   instance_type               = var.instance_type
   ami                         = "ami-0e8a34246278c21e4"
-  key_name                    = "jenkins_server_keypair"
+  key_name                    = "Demokey"
   monitoring                  = true
   vpc_security_group_ids      = [module.sg.security_group_id]
   subnet_id                   = module.vpc.public_subnets[0]
@@ -653,7 +653,7 @@ pipeline{
         stage('Checkout SCM') {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vishal2505/terraform-eks-cicd.git']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/krunalp1908/terraform-jenkins-eks-cicd.git']])
                 }
             }
         }
@@ -742,7 +742,7 @@ pipeline{
         stage('Checkout SCM') {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vishal2505/terraform-eks-cicd.git']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/krunalp1908/terraform-jenkins-eks-cicd.git']])
                 }
             }
         }
